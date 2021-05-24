@@ -1,26 +1,24 @@
 <?php
-$name = "Houda";
+$titlePage = 'First';
+require_once 'fragments/header.php';
 ?>
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
 </head>
-<body>
+</body>
+    <div class="alert alert-success">
+        Cc <i class="fa fa-smile-o" aria-hidden="true"></i>
+    </div>
     <p>
         <?php
             echo "Bonjour $name";
         ?>
     </p>
     <div>
+        cc
         <?php
             echo 'Bonjour $name<br>';
             echo "Bonjour {$name}<br>";
         ?>
     </div>
-</body>
-</html>
+<?php
+require_once 'fragments/footer.php';
+?>
