@@ -3,7 +3,7 @@ $titlePage = 'First';
 require_once 'fragments/header.php';
 ?>
 </head>
-</body>
+<body>
     <div class="alert alert-success">
         Cc <i class="fa fa-smile-o" aria-hidden="true"></i>
     </div>

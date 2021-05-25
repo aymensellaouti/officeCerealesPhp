@@ -29,5 +29,10 @@ include_once 'fragments/header.php';
         echo $message;
     ?>
 </div>
+<?php
+
+var_dump(get_defined_constants());
+
+phpinfo(INFO_ALL);
 
 
