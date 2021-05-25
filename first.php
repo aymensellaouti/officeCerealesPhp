@@ -19,6 +19,8 @@ require_once 'fragments/header.php';
             echo "Bonjour {$name}<br>";
         ?>
     </div>
+
+
 <?php
 require_once 'fragments/footer.php';
 ?>
