@@ -19,6 +19,7 @@
   "homepage": "https://github.com/aymensellaouti/officeCerealesPhp#readme",
   "dependencies": {
     "bootstrap": "^5.0.1",
+    "bootswatch": "^5.0.1",
     "font-awesome": "^4.7.0"
   }
 }
