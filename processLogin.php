@@ -7,9 +7,10 @@
  * 4 Si non
  * Envoyer vers login avec message d'erreur
  */
-
+session_start();
 if (isset($_POST['username']) && isset($_POST['pwd'])) {
     if($_POST['username'] == "root" && $_POST['pwd']=="secret") {
+        $_SESSION["username"]= $_POST['username'];
         header("location:home.php");
     } else {
         $errorMessage = "Veuillez Vérifier vos credentials";
