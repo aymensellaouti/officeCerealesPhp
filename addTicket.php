@@ -1,5 +1,9 @@
 <?php
 require_once 'isAuthenticated.php';
+$user = $_SESSION['username'];
+if ($user->role != 'client') {
+   header('location:home.php');
+}
 $titlePage = 'Add Ticket';
 require_once 'fragments/header.php';
 ?>

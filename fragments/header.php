@@ -1,5 +1,6 @@
 <?php
 require_once 'isAuthenticated.php';
+$user = $_SESSION['username'];
 ?>
 <!doctype html>
 <html lang="en">
@@ -30,29 +31,6 @@ require_once 'isAuthenticated.php';
 </title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarColor01">
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="../home.php">Home
-                        <span class="visually-hidden">(current)</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../listeTickets.php">Liste des Tickets</a>
-                </li>
-            </ul>
-            <form class="d-flex">
-                <a href="../changeMode.php?mode=light" class="btn btn-light"> Light Mode</a>
-                <a href="../changeMode.php?mode=dark" class="btn btn-dark"> Dark Mode</a>
-                <a href="../logout.php" class="btn btn-secondary my-2 my-sm-0" type="submit">Logout</a>
-            </form>
-        </div>
-    </div>
-</nav>
+<?php
+    require_once 'menu.php';
+?>

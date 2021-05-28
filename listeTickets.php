@@ -1,18 +1,10 @@
 <?php
 require_once 'isAuthenticated.php';
-require_once 'getConnexion.php';
+require_once 'classes/TicketRepository.php';
 $titlePage = 'Mes tickets';
 $user = $_SESSION['username'];
-if ($user->role == 'client') {
-    $query = "select * from ticket where owner_id = {$user->id}";
-} elseif ($user->role == 'admin') {
-    $query = "select * from ticket";
-} else {
-    $query = "select * from ticket where agent_id = {$user->id} or statut = 'En Attente'";
-}
-
-$result = $bdd->query($query);
-$tickets = $result->fetchAll(PDO::FETCH_OBJ);
+$ticketRepository = new TicketRepository();
+$tickets = $ticketRepository->findAllTickets($user);
 require_once 'fragments/header.php';
 ?>
     <div class="container">
@@ -23,6 +15,9 @@ require_once 'fragments/header.php';
                 <th>Description</th>
                 <th>Statut</th>
                 <th>Réponse</th>
+                <?php if ($user->role == 'client' || $user->role == 'agent'): ?>
+                <th>Actions</th>
+                <?php endif;?>
             </tr>
             <?php
             foreach ($tickets as $ticket):
@@ -40,6 +35,13 @@ require_once 'fragments/header.php';
                     <td><?=$ticket->description ?></td>
                     <td><?=$ticket->statut ?></td>
                     <td><?=$ticket->reponse ?></td>
+                    <?php if ($user->role == 'client' && $ticket->statut == 'En Attente'): ?>
+                        <th>
+                            <a href="processDeleteTicket.php?id=<?=$ticket->id ?>">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            </a>
+                        </th>
+                    <?php endif;?>
                 </tr>
             <?php
             endforeach;

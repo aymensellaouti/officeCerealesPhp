@@ -1,6 +1,4 @@
 <?php
-session_start();
-
 require_once 'classes/TicketRepository.php';
 require_once 'isAuthenticated.php';
 $user = $_SESSION['username'];
@@ -8,11 +6,10 @@ if ($user->role != 'client') {
     header('location:home.php');
 }
 
-if (isset($_POST['designation']) && isset($_POST['description'])) {
-    $designation = htmlspecialchars($_POST['designation']);
-    $description = htmlspecialchars($_POST['description']);
+if (isset($_GET['id'])) {
+    $ticketId = htmlspecialchars($_GET['id']);
     $ticketRepository = new TicketRepository();
-    $ticketRepository->addTicket($user->id, $designation, $description);
+    $ticketRepository->deleteTicket($user, $ticketId);
     //requete ma ase pour chercher le user
     header('location:listeTickets.php');
 } else {
