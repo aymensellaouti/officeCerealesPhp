@@ -8,9 +8,21 @@
  * Envoyer vers login avec message d'erreur
  */
 session_start();
+require_once 'getConnexion.php';
 if (isset($_POST['username']) && isset($_POST['pwd'])) {
-    if($_POST['username'] == "root" && $_POST['pwd']=="secret") {
-        $_SESSION["username"]= $_POST['username'];
+    $username = htmlspecialchars($_POST['username']);
+    $pwd = htmlspecialchars($_POST['pwd']);
+    //requete ma ase pour chercher le user
+    $query = "select * from user where email = ? and password = ?";
+    $request = $bdd->prepare($query);
+    $request->execute([
+      $username,
+      $pwd
+    ]);
+    $user = $request->fetch(PDO::FETCH_OBJ);
+    if($user) {
+        unset($user->password);
+        $_SESSION["username"]= $user;
         header("location:home.php");
     } else {
         $errorMessage = "Veuillez Vérifier vos credentials";

@@ -1,9 +1,8 @@
 <?php
 require_once 'isAuthenticated.php';
-require_once './classes/ConnexionBD.php';
+require_once 'getConnexion.php';
 $titlePage = 'Users List';
 
-$bdd = ConnexionBD::getInstance();
 $result = $bdd->query("select * from user");
 $users = $result->fetchAll(PDO::FETCH_OBJ);
 require_once 'fragments/header.php';
