@@ -40,4 +40,13 @@ class TicketRepository
             'ticketId'=>$ticketId
         ]);
     }
+
+    public function priseEnChargeTicket($user, $ticketId) {
+        $query = "UPDATE `ticket` SET `agent_id` = :userId, statut = 'En Cours' WHERE `ticket`.`id` = :ticketId and statut = 'En Attente'";
+        $request = $this->bdd->prepare($query);
+        $request->execute([
+            'userId'=>$user->id,
+            'ticketId'=>$ticketId
+        ]);
+    }
 }

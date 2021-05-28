@@ -8,7 +8,8 @@ $tickets = $ticketRepository->findAllTickets($user);
 require_once 'fragments/header.php';
 ?>
     <div class="container">
-        <table class="table">
+        <table id="dtable" class="table display nowrap">
+            <thead>
             <tr>
                 <th>Id</th>
                 <th>Designation</th>
@@ -19,6 +20,8 @@ require_once 'fragments/header.php';
                 <th>Actions</th>
                 <?php endif;?>
             </tr>
+            </thead>
+            <tbody>
             <?php
             foreach ($tickets as $ticket):
                 if($ticket->statut == 'En Attente') {
@@ -35,17 +38,25 @@ require_once 'fragments/header.php';
                     <td><?=$ticket->description ?></td>
                     <td><?=$ticket->statut ?></td>
                     <td><?=$ticket->reponse ?></td>
-                    <?php if ($user->role == 'client' && $ticket->statut == 'En Attente'): ?>
-                        <th>
+                    <?php if ($user->role == 'client' || $user->role == 'agent'): ?>
+                        <td>
+                            <?php if ($user->role == 'client' && $ticket->statut == 'En Attente'): ?>
                             <a href="processDeleteTicket.php?id=<?=$ticket->id ?>">
                                 <i class="fa fa-trash" aria-hidden="true"></i>
                             </a>
-                        </th>
+                            <?php endif;?>
+                            <?php if ($user->role == 'agent' && $ticket->statut == 'En Attente'): ?>
+                                <a href="processPriseEnChargeTicket.php?id=<?=$ticket->id ?>">
+                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                </a>
+                            <?php endif;?>
+                        </td>
                     <?php endif;?>
                 </tr>
             <?php
             endforeach;
             ?>
+            </tbody>
         </table>
     </div>
 <?php
