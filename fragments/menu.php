@@ -15,6 +15,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="../listeTickets.php">Liste des Tickets</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../mailer.php">Test Mail</a>
+                </li>
                 <?php if ($user->role == 'client'): ?>
                     <li class="nav-item">
                         <a class="nav-link" href="../addTicket.php">Ajouter un ticket</a>
